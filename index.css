@@ -28,6 +28,24 @@ html, body {
 	align-items: center;
 }
 
+.ui-container {
+	position: absolute;
+	display: flex;
+}
+
+.ui-button {
+	border: none;
+	border-right: var(--fg-color) 1px solid;
+	border-bottom: var(--fg-color) 1px solid;
+	color: var(--fg-color);
+	background-color: var(--bg-color);
+	padding: 8px;
+}
+
+.ui-button.disabled {
+	background-color: gray;
+}
+
 #lab-canvas {
 	left: 0;
 	top: 0;
