@@ -79,7 +79,7 @@ let focusingRed = false;
 const draw = () => {
 	ctx.canvas.width  = window.innerWidth;
 	ctx.canvas.height = window.innerHeight;
-	const fancyPath = [{t: 0, x: 1}, {t: 5, x: 1}].concat(generatePath({t: 5, x: 1}, 5, 0, 0.8)).concat([{t: 10, x: 3}, {t:100, x: 75}]);
+	const fancyPath = [{t: 0, x: 1}, {t: 5, x: 1}].concat(generatePath({t: 5, x: 1}, 4, 0, 0.5)).concat([{t: 9, x: 2}, {t:101, x: 48}]);
 	// let currentPos = {t: i / 60, x: i / 60 * v};
 	// let currentPos = {t: 0, x: 0};
 	let currentPos = lerpPath(focusingRed ? fancyPath : [{t: 0, x: 0}, {t: 100, x: 0}], time);
@@ -90,7 +90,7 @@ const draw = () => {
 	drawPath([{t: 0, x: 0}, {t: 100, x: 100}], currentPos, v, c, 'yellow');
 	drawPath([{t: 0, x: 0}, {t: 100, x: -100}], currentPos, v, c, 'yellow');
 	drawPath(fancyPath, currentPos, v, c, 'red');
-	drawPath([{t: 0, x: 0}, {t: 100, x: 0}], currentPos, v, c, 'blue');
+	drawPath([{t: 0, x: 0}, {t: 100, x: 0}], currentPos, v, c, 'green');
 	
 	// ctx.fillStyle = 'rgb(255, 0, 0)';
 	// ctx.fillRect(10, 10, 50, 50);
@@ -184,13 +184,13 @@ const main = () => {
 	const pauseButton = document.getElementById('ui-pause');
 	const resetButton = document.getElementById('ui-reset');
 	const focusRedButton = document.getElementById('ui-path-red');
-	const focusBlueButton = document.getElementById('ui-path-blue');
+	const focusGreenButton = document.getElementById('ui-path-green');
 
 	pauseButton.addEventListener('click', () => {
 		running = !running;
 		resetButton.classList.remove('disabled');
 		focusRedButton.classList.add('disabled')
-		focusBlueButton.classList.add('disabled')
+		focusGreenButton.classList.add('disabled')
 		if (running) {
 			pauseButton.innerText = 'Pause';
 		} else {
@@ -206,7 +206,7 @@ const main = () => {
 		time = 0;
 		pauseButton.innerText = 'Start';
 		focusRedButton.classList.remove('disabled')
-		focusBlueButton.classList.remove('disabled')
+		focusGreenButton.classList.remove('disabled')
 	});
 	
 	focusRedButton.addEventListener('click', () => {
@@ -215,8 +215,8 @@ const main = () => {
 		}
 		focusingRed = true;
 	});
-	focusBlueButton.addEventListener('click', () => {
-		if (focusBlueButton.classList.contains('disabled')) {
+	focusGreenButton.addEventListener('click', () => {
+		if (focusGreenButton.classList.contains('disabled')) {
 			return;
 		}
 		focusingRed = false;
